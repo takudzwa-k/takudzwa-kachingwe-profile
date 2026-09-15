@@ -1,4 +1,4 @@
-# Takudzwa — Personal Profile & Mini-Portfolio
+# Takudzwa Kachingwe 250625 — Personal Profile & Mini-Portfolio
 
 A one-page, semantic HTML5 profile site built for the Web Technologies (CIS2103) Unit II practical assignment,
 featuring an About section, skills list, a small project showcase, and a native-HTML5-validated Contact Me form.
