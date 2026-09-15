@@ -4,10 +4,10 @@
 
 > **Context:** I'm a second-year Software Engineering student at Africa University, building a one-page personal
 > profile site for a Web Technologies assignment.
-> **Goal:** Write a short "About Me" bio (3–4 sentences) for the page.
-> **Constraints:** Keep it under 60 words, friendly but professional tone, avoid generic buzzwords like "passionate"
+> Write a short "About Me" bio (3–4 sentences) for the page.
+> Keep it under 60 words, friendly but professional tone, avoid generic buzzwords like "passionate"
 > or "innovative," and mention that I'm still learning front-end development and interested in AI-assisted design.
-> **Format:** Plain paragraph text, no headings, no bullet points.
+> Plain paragraph text, no headings, no bullet points.
 
 ## 2. AI's Raw Output
 
@@ -20,7 +20,7 @@
 
 > "I'm a second-year Software Engineering student at Africa University with a growing interest in front-end
 > development and user-centred design. I enjoy turning ideas into working interfaces and I'm currently sharpening
-> my HTML, CSS, and JavaScript fundamentals while exploring how AI tools can speed up (without replacing) good
+> my HTML, CSS, and JavaScript fundamentals while exploring how AI tools can speed up good
 > design thinking."
 
 ## 4. Reflection
