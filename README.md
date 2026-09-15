@@ -10,8 +10,6 @@ See the full prompt, the AI's raw output, my edited final version, and my reflec
 
 ## Accessibility: Peer Review Issue & Fix
 
-During Thursday's practical session, a peer reviewer flagged two accessibility issues with my draft page:
-
 1. **Generic alt text** — the profile photo's `alt` attribute just said `"Profile Image"`, which doesn't tell a
    screen-reader user anything meaningful about the image.
    **Fix:** updated the `alt` text to a descriptive `"Headshot photo of Takudzwa smiling at the camera"`.
