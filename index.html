@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Personal profile and mini-portfolio page for Takudzwa, a Software Engineering student at Africa University, showcasing skills, projects, and a contact form.">
+    <title>Takudzwa | Personal Profile</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <img src="images/profilePic.jpeg" alt="Headshot photo of Takudzwa smiling at the camera">
+        <div class="header-text">
+            <h1><span>Hello, my name is</span> <span class="highlight">Takudzwa.</span></h1>
+            <p class="tagline">Software Engineering student at Africa University.</p>
+        </div>
+    </header>
+
+    <nav aria-label="Page sections">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <main>
+        <section id="about" class="about-me">
+            <h2><span class="highlight">About Me</span></h2>
+            <p>
+                I'm a second-year Software Engineering student at Africa University with a growing interest in
+                front-end development and user-centred design. I enjoy turning ideas into working interfaces and
+                I'm currently sharpening my HTML, CSS, and JavaScript fundamentals while exploring how AI tools can
+                speed up good design thinking.
+            </p>
+        </section>
+
+        <section id="skills" class="my-skills">
+            <h2><span class="highlight">My Skills</span></h2>
+            <ul>
+                <li>HTML5</li>
+                <li>CSS3</li>
+                <li>JavaScript</li>
+                <li>Python</li>
+            </ul>
+        </section>
+
+        <section id="projects" class="projects">
+            <h2><span class="highlight">Projects</span></h2>
+
+            <article class="project-card">
+                <h3>Personal Profile Page</h3>
+                <p>
+                    This very page — a semantic, accessible one-page profile built with HTML5 and CSS3 as part of
+                    my Web Technologies coursework.
+                </p>
+            </article>
+
+            <aside class="quick-fact">
+                <h3>Quick Fact</h3>
+                <p>I'm currently learning how to write effective AI prompts to speed up my own design decisions.</p>
+            </aside>
+        </section>
+
+        <section id="contact" class="contact-me">
+            <h2><span class="highlight">Contact Me</span></h2>
+            <form>
+                <div class="form-group">
+                    <label for="name">full name:</label>
+                    <input type="text" id="name" name="name" required minlength="2" placeholder="e.g. Takudzwa Moyo">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">email address:</label>
+                    <input type="email" id="email" name="email" required placeholder="you@example.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">phone number:</label>
+                    <input type="tel" id="phone" name="phone" pattern="[0-9+ ]{7,15}" placeholder="+263 71 234 5678">
+                </div>
+
+                <div class="form-group">
+                    <label for="message">message:</label>
+                    <textarea id="message" name="message" rows="5" required minlength="10" placeholder="Write your message here..."></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">Send</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Takudzwa. Built with HTML5 &amp; CSS3.</p>
+    </footer>
+</body>
+</html>
