@@ -1,38 +1,37 @@
-# Takudzwa — Personal Profile & Mini-Portfolio
+## Takudzwa Kachingwe 250625 Practical Assignment 2
 
-A one-page, semantic HTML5 profile site built for the Web Technologies (CIS2103) Unit II practical assignment,
-featuring an About section, skills list, a small project showcase, and a native-HTML5-validated Contact Me form.
+The page is styled mobile-first. `style.css` holds the base styles for phones, and two hand-written `min-width` media queries (768px and 1024px) add tablet and desktop layouts. Tailwind (CDN) provides utility classes on the nav and the contact form. Layout changes at each breakpoint come from CSS, not from shrinking the desktop design.
 
-## AI-Assisted Content
+### Breakpoints
+I tested the page in the browser DevTools device toolbar at three widths:
 
-The About-section bio was drafted with AI assistance and then critically revised so it genuinely reads like me.
-See the full prompt, the AI's raw output, my edited final version, and my reflection in **[PROMPT_LOG.md](./PROMPT_LOG.md)**.
+| Width | Device class | Result |
+|-------|--------------|--------|
+| ~375px | Mobile | [FILL IN] |
+| ~768px | Tablet | [FILL IN] |
+| ~1280px | Desktop | [FILL IN] |
 
-## Accessibility: Peer Review Issue & Fix
+### Flexbox
+- **Nav (Tailwind):** `flex flex-wrap items-center justify-center gap-x-6 gap-y-3 md:justify-end md:gap-x-12`. Links are centred and wrap on mobile, and sit on the right from 768px.
+- **Hero:** a column flex container with `justify-content: center` and `gap`. The two hero buttons sit in a `flex-wrap` row with `align-items: center`.
+- **About:** the photo and intro text are a column on mobile and a row from 768px (`flex-direction: row; align-items: center`).
+- **Project tags and footer:** tags use `flex-wrap` and `gap`; the footer switches to `justify-content: space-between` from 768px.
 
-1. **Generic alt text** — the profile photo's `alt` attribute just said `"Profile Image"`, which doesn't tell a
-   screen-reader user anything meaningful about the image.
-   **Fix:** updated the `alt` text to a descriptive `"Headshot photo of Takudzwa smiling at the camera"`.
-2. **Low-contrast, color-only button cue** — the original "send" button used inline `style="background-color: blue"`
-   with default blue link-colored text elsewhere on the page, which risked inconsistent, borderline contrast against
-   the light backgrounds.
-   **Fix:** moved styling into `style.css`, standardized the accent color to a darker `#0033cc` (which passes WCAG AA
-   contrast against white and the light-gray section backgrounds), and added a visible `:hover`/`:focus` state on
-   the button and nav links so interactive elements don't rely on color alone.
+### Grid
+- **Skills:** one column on mobile, `repeat(2, 1fr)` from 768px, with `gap: 1.25rem`.
+- **Projects:** one column on mobile, `repeat(2, 1fr)` at 768px (the third card spans the row with `grid-column: 1 / -1`), and `repeat(3, minmax(0, 1fr))` at 1024px.
+- **Contact form (Tailwind):** `grid grid-cols-1 gap-x-8 gap-y-8 md:grid-cols-2`, with `md:col-span-2` on the full-width fields.
 
-Other accessibility measures applied throughout the page:
-- Every form input (`text`, `email`, `tel`, `textarea`) has a properly associated `<label for="">`/`id` pair.
-- The `<nav>` has an `aria-label="Page sections"` to clarify its purpose for assistive technology.
-- Heading levels are properly nested (`h1` → `h2` → `h3`, no skipped levels).
+### Tailwind
+- **Nav:** `flex`, `flex-wrap`, `items-center`, `justify-*`, `gap-*` and the `md:` variants above.
+- **Contact form:** `grid`, `grid-cols-*`, `gap-*`, `col-span-*`, `justify-self-start`, and `flex flex-col gap-2` on each field group.
+- **Mixing Tailwind with my own CSS (intentional):** Tailwind handles layout utilities on those two components. My own CSS handles design tokens, typography, colours, the box model and the Grid sections. Element selectors in `style.css` are prefixed with `body` so Tailwind's preflight reset does not override them.
 
-## Structure
+### Images and text
+Images use `max-width: 100%; height: auto`. Headings use `clamp()` so they scale smoothly between breakpoints, and paragraphs use `max-width` in `ch` to keep line lengths readable.
 
-- `index.html` — the semantic page markup (`header`, `nav`, `main`, multiple `section`s, an `article`, an `aside`,
-  and a `footer`).
-- `style.css` — all styling (no inline styles).
-- `PROMPT_LOG.md` — the AI prompt, raw output, edited copy, and reflection for Part C.
-
-## Notes
-
-Native HTML5 validation only — no JavaScript is used to validate the Contact Me form (`required`, `type="email"`,
-`pattern`, `minlength` attributes handle validation directly in the browser).
+### Code quality and known notes
+- HTML validated with the W3C validator: [FILL IN: result, e.g. "no errors"].
+- Console: [FILL IN: e.g. "no errors; the Tailwind CDN logs a development-only 'not for production' warning, which is expected when using the CDN script"].
+- No placeholder or Lorem ipsum text is left in the page.
+- Markup note: I kept all semantic elements, section IDs and form fields from Assignment 1, and added extra elements (hero buttons, section labels, skill icons, project links) to support the new design. The nav now comes before the header, and the photo moved from the header into the About section.
