@@ -31,7 +31,7 @@ I tested the page in the browser DevTools device toolbar at three widths:
 Images use `max-width: 100%; height: auto`. Headings use `clamp()` so they scale smoothly between breakpoints, and paragraphs use `max-width` in `ch` to keep line lengths readable.
 
 ### Code quality and known notes
-- HTML validated with the W3C validator: [FILL IN: result, e.g. "no errors"].
-- Console: [FILL IN: e.g. "no errors; the Tailwind CDN logs a development-only 'not for production' warning, which is expected when using the CDN script"].
+- HTML validated with the W3C validator.
+- Console: No errors; the Tailwind CDN logs a development-only 'not for production' warning, which is expected when using the CDN script.
 - No placeholder or Lorem ipsum text is left in the page.
-- Markup note: I kept all semantic elements, section IDs and form fields from Assignment 1, and added extra elements (hero buttons, section labels, skill icons, project links) to support the new design. The nav now comes before the header, and the photo moved from the header into the About section.
+- Markup note: I kept all semantic elements, section IDs and form fields from Assignment 1, and added extra elements to support the new design. The nav now comes before the header, and the photo moved from the header into the About section.
