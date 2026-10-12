@@ -7,9 +7,9 @@ I tested the page in the browser DevTools device toolbar at three widths:
 
 | Width | Device class | Result |
 |-------|--------------|--------|
-| ~375px | Mobile | [FILL IN] |
-| ~768px | Tablet | [FILL IN] |
-| ~1280px | Desktop | [FILL IN] |
+| ~375px | Mobile | Single-column layout. Nav links wrap and are centred. Hero text and buttons are stacked. About photo sits above its text. Skills and projects are in one column. |
+| ~768px | Tablet | Nav moves to the right. Hero dot pattern appears. About photo and text sit side by side. Skills are in 2 columns. Projects are in 2 columns, with the third card full width. |
+| ~1280px | Desktop | Same as tablet, except projects are in 3 columns. Content is centred in a 1080px column. |
 
 ### Flexbox
 - **Nav (Tailwind):** `flex flex-wrap items-center justify-center gap-x-6 gap-y-3 md:justify-end md:gap-x-12`. Links are centred and wrap on mobile, and sit on the right from 768px.
