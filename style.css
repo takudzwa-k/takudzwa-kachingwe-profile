@@ -121,6 +121,9 @@ body header {
     color: #fff;
 }
 
+.header-text,
+.scroll-hint { position: relative; }
+
 .hero-eyebrow {
     display: flex;
     align-items: center;
@@ -189,18 +192,76 @@ body .tagline strong { color: #fff; font-weight: 700; }
 }
 .scroll-hint::after { content: ""; width: 4.5rem; height: 1px; background: #fbd9dc; }
 
-/* decorative dot grid (tablet and up) */
-body header::after {
-    content: "";
+/* decorative dot grid (tablet and up).
+   Static faint dots are the field's own background (28px cells, dot centred in
+   each cell). A few brighter dots sit on top and swap places with a neighbour,
+   passing each other on a small arc. */
+.dot-field {
     display: none;
     position: absolute;
     top: 14%;
     right: 3%;
     width: 230px;
     height: 260px;
-    background-image: radial-gradient(rgba(255, 255, 255, 0.35) 1.5px, transparent 1.6px);
+    background-image: radial-gradient(rgba(255, 255, 255, 0.4) 1.5px, transparent 1.6px);
     background-size: 28px 28px;
     pointer-events: none;
+    -webkit-mask-image: radial-gradient(ellipse at center, #000 55%, transparent 100%);
+    mask-image: radial-gradient(ellipse at center, #000 55%, transparent 100%);
+}
+.dot-field span {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background: #fff;
+    border-radius: 50%;
+    animation-duration: var(--dur);
+    animation-delay: var(--delay);
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+}
+
+/* pair 1: horizontal swap (cells col 2 and col 3, row 2) */
+.dot-field span:nth-child(1) { left: 67.5px;  top: 67.5px;  --dur: 7s;  --delay: 0s;   animation-name: swap-right; }
+.dot-field span:nth-child(2) { left: 95.5px;  top: 67.5px;  --dur: 7s;  --delay: 0s;   animation-name: swap-left; }
+/* pair 2: vertical swap (col 5, rows 4 and 5) */
+.dot-field span:nth-child(3) { left: 151.5px; top: 123.5px; --dur: 9s;  --delay: 1.5s; animation-name: swap-down; }
+.dot-field span:nth-child(4) { left: 151.5px; top: 151.5px; --dur: 9s;  --delay: 1.5s; animation-name: swap-up; }
+/* pair 3: horizontal swap (cols 3 and 4, row 6) */
+.dot-field span:nth-child(5) { left: 95.5px;  top: 179.5px; --dur: 8s;  --delay: 3s;   animation-name: swap-right; }
+.dot-field span:nth-child(6) { left: 123.5px; top: 179.5px; --dur: 8s;  --delay: 3s;   animation-name: swap-left; }
+/* pair 4: vertical swap (col 6, rows 1 and 2) */
+.dot-field span:nth-child(7) { left: 179.5px; top: 39.5px;  --dur: 10s; --delay: 0.5s; animation-name: swap-down; }
+.dot-field span:nth-child(8) { left: 179.5px; top: 67.5px;  --dur: 10s; --delay: 0.5s; animation-name: swap-up; }
+
+/* one cell = 28px. Each dot swaps with its neighbour, rests, then swaps back. */
+@keyframes swap-right {
+    0%, 15%  { transform: translate(0, 0); }
+    30%      { transform: translate(14px, -9px); }
+    45%, 60% { transform: translate(28px, 0); }
+    75%      { transform: translate(14px, -9px); }
+    90%, 100% { transform: translate(0, 0); }
+}
+@keyframes swap-left {
+    0%, 15%  { transform: translate(0, 0); }
+    30%      { transform: translate(-14px, 9px); }
+    45%, 60% { transform: translate(-28px, 0); }
+    75%      { transform: translate(-14px, 9px); }
+    90%, 100% { transform: translate(0, 0); }
+}
+@keyframes swap-down {
+    0%, 15%  { transform: translate(0, 0); }
+    30%      { transform: translate(9px, 14px); }
+    45%, 60% { transform: translate(0, 28px); }
+    75%      { transform: translate(9px, 14px); }
+    90%, 100% { transform: translate(0, 0); }
+}
+@keyframes swap-up {
+    0%, 15%  { transform: translate(0, 0); }
+    30%      { transform: translate(-9px, -14px); }
+    45%, 60% { transform: translate(0, -28px); }
+    75%      { transform: translate(-9px, -14px); }
+    90%, 100% { transform: translate(0, 0); }
 }
 
 /* ---------- About ---------- */
@@ -423,11 +484,58 @@ body footer {
 body footer p { margin: 0; max-width: none; font-size: 0.95rem; }
 body footer a { color: #fff; text-decoration: none; }
 
+
+/* ---------- Scroll transitions (CSS only) ---------- */
+/* Uses CSS scroll-driven animations: each element fades and slides up as it
+   scrolls into view. Browsers without support just show everything normally,
+   and nothing animates if the visitor prefers reduced motion. */
+@keyframes reveal-up {
+    from { opacity: 0; transform: translateY(32px); }
+    to   { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: view()) {
+        .section-head,
+        .about-lead,
+        .about-body,
+        .my-skills li,
+        .project-card,
+        .quick-fact,
+        .contact-me form,
+        body footer {
+            animation: reveal-up linear both;
+            animation-timeline: view();
+            animation-range: entry 0% entry 45%;
+        }
+
+        /* stagger siblings so they arrive one after another */
+        .my-skills li:nth-child(2),
+        .project-card:nth-of-type(2) { animation-range: entry 8% entry 53%; }
+        .my-skills li:nth-child(3),
+        .project-card:nth-of-type(3) { animation-range: entry 16% entry 61%; }
+        .my-skills li:nth-child(4)   { animation-range: entry 24% entry 69%; }
+    }
+}
+
+/* smoother hover and focus feedback */
+body nav a,
+.btn-primary,
+.link-quiet,
+body .submit-btn,
+.project-link {
+    transition: opacity 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+}
+.btn-primary:hover,
+body .submit-btn:hover { transform: translateY(-2px); }
+body input,
+body textarea { transition: border-color 0.25s ease, box-shadow 0.25s ease; }
+
 /* ---------- Part D: media queries (mobile-first, min-width) ---------- */
 
 /* Tablet ~768px */
 @media (min-width: 768px) {
-    body header::after { display: block; }
+    .dot-field { display: block; }
     body h1 span { display: block; }
     body h2 span { display: block; }
 
@@ -453,4 +561,5 @@ body footer a { color: #fff; text-decoration: none; }
 
 @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
+    .dot-field span { animation: none; }
 }
